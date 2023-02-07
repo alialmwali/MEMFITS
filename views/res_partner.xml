@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="res_partner_form_edit" model="ir.ui.view">
+            <field name="name">res.partner</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[1]" position="before">
+                    <group>
+                        <group>
+                            <field name="contact_ref"/>
+                            <field name="customer_category"/>
+                            <field name="market_segment"/>
+                            <field name="region_id"/>
+                        </group>    
+                    </group>
+                </xpath>
+                <xpath expr="//group[2]" position="after">
+                    <group>
+                        <group>
+                            <field name="vat_number"/>
+                            <field name="vat_certificate"/>
+                            <field name="cr_number"/>
+                            <field name="cr_copy"/>
+                        </group>    
+                    </group>
+                    <group string="ARABIC INFORMATION">
+                        <group>
+                            <field name="name_in_arabic"/>
+                            <field name="address_arabic"/>
+                        </group>
+                        <group>
+                            <field name="city_arabic"/>
+                            <field name="country_arabic"/>
+                        </group>
+                    </group>
+                </xpath>
+                <xpath expr="//field[@name='website']" position="after">
+                    <field name="lang_id"/>
+                </xpath>
+                <!-- <xpath expr="//group[2]" position="after">
+                    
+                </xpath> -->
+            </field>
+        </record>
+    </data>
+</odoo>
