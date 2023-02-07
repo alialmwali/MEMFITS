@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Custem MEMF",
+    'name': "MEMFITS",
 
     'summary': """Custem MEMF""",
 
@@ -16,7 +16,7 @@
     #'category': ['HR','Accounting','POS','Health','Report','Stock','Project','Web','Manufacturing','Other',],
     'category': '',
     # any module necessary for this one to work correctly
-    'depends': ['contacts'],
+    'depends': ['contacts','project'],
 
     # always loaded
     'data': [
@@ -24,5 +24,6 @@
         'security/ir.model.access.csv',
         'views/customer_catg.xml',
         'views/res_partner.xml',
+        # 'views/leads.xml',
     ],
 }

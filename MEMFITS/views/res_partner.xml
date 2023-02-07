@@ -44,5 +44,30 @@
                 </xpath> -->
             </field>
         </record>
+        <record id="employee_form_edit" model="ir.ui.view">
+            <field name="name">hr.employee</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='work_email']" position="after">
+                    <field name="project_id"/>
+                </xpath>
+            </field>
+        </record>
+         
+        <record id="project_form_simplified_edit" model="ir.ui.view">
+            <field name="name">project.project</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.project_project_view_form_simplified"/>
+            <field name="mode">primary</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="billable"/>
+                    <field name="time_sheet"/>
+                    <field name="planning"/>
+                    <field name="create_task"/>
+                </xpath>
+            </field>
+        </record>
     </data>
 </odoo>

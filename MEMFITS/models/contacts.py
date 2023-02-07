@@ -24,16 +24,16 @@ class CustomerCategory(models.Model):
     _name = 'customer.category'
 
     name = fields.Char()
-
-
 class MarketSegment(models.Model):
     _name = 'market.segment'
 
     name = fields.Char()
 
-
 class Region(models.Model):
-
     _name = 'res.region'
 
     name= fields.Char()
+class HrEmployee(models.Model):
+    _inherit='hr.employee'
+
+    project_id= fields.Many2one('project.project')
