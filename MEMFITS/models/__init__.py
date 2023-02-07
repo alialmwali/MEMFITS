@@ -2,5 +2,5 @@
 
 from . import contacts
 # from . import leads
-from . import project
+# from . import project
 

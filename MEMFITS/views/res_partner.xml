@@ -55,7 +55,7 @@
             </field>
         </record>
          
-        <record id="project_form_simplified_edit" model="ir.ui.view">
+        <!-- <record id="project_form_simplified_edit" model="ir.ui.view">
             <field name="name">project.project</field>
             <field name="model">project.project</field>
             <field name="inherit_id" ref="project.project_project_view_form_simplified"/>
@@ -68,6 +68,6 @@
                     <field name="create_task"/>
                 </xpath>
             </field>
-        </record>
+        </record> -->
     </data>
 </odoo>

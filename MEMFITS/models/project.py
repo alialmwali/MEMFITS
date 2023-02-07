@@ -4,7 +4,7 @@ from odoo import models, fields, api, _
 
 class Project(models.Model):
     _inherit = 'project.project'
-
+    
     billable  = fields.Boolean(
     default=True
     )
