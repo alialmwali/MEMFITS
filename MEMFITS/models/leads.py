@@ -1,19 +1,19 @@
 import string
 from odoo import models, fields, api, _
 
-class CrmLead(models.Model):
+
+class Lead(models.Model):
     _inherit ='crm.lead'
 
-    probability = fields.Char()
+    # probability = fields.Char()
     company_name = fields.Char()
-     # address fields
-    street = fields.Char()
-    street2 = fields.Char()
-    zip = fields.Char(change_default=True)
-    city = fields.Char()
-    state_id = fields.Many2one("res.country.state", string='State', ondelete='restrict', domain="[('country_id', '=?', country_id)]")
-    country_id = fields.Many2one('res.country', string='Country', ondelete='restrict')
-    country_code = fields.Char(related='country_id.code', string="Country Code")
+    # street = fields.Char()
+    # street2 = fields.Char()
+    # zip = fields.Char(change_default=True)
+    # city = fields.Char()
+    # state_id = fields.Many2one("res.country.state", string='State', ondelete='restrict', domain="[('country_id', '=?', country_id)]")
+    # country_id = fields.Many2one('res.country', string='Country', ondelete='restrict')
+    # country_code = fields.Char(related='country_id.code', string="Country Code")
     
     website = fields.Char()
     opportunity_name = fields.Char()
@@ -27,8 +27,8 @@ class CrmLead(models.Model):
     jop_postion = fields.Char()
     phone = fields.Char()
     mobile = fields.Char()
-    sales_person_id = fields.Many2one('res.user')
+    sales_person_id = fields.Many2one('res.users')
     sales_team_id= fields.Many2one('crm.team')
-    priority = fields.Char()
-    tags = fields.Many2one('crm.tag')
-    priority = fields.Binary(attachment=True)
+    # priority = fields.Char()
+    tag_ids = fields.Many2many('crm.tag', string='Tags')
+    priority_icon = fields.Binary(attachment=True)

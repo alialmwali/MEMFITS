@@ -11,3 +11,9 @@ class Project(models.Model):
     time_sheet  = fields.Boolean( default=True)
     planning = fields.Boolean( default=True)
     create_task = fields.Char(string="Create task by sending an email to")
+
+
+class HrEmployeePrivate(models.Model):
+    _inherit = 'hr.employee'
+
+    project_id = fields.Many2one('project.project')

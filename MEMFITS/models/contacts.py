@@ -33,7 +33,3 @@ class Region(models.Model):
     _name = 'res.region'
 
     name= fields.Char()
-# class HrEmployee(models.Model):
-#     _inherit='hr.employee'
-
-#     project_id= fields.Many2one('project.project')
