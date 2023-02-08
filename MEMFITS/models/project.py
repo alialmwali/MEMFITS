@@ -13,7 +13,7 @@ class Project(models.Model):
     create_task = fields.Char(string="Create task by sending an email to")
 
 
-class HrEmployeePrivate(models.Model):
-    _inherit = 'hr.employee'
+# class HrEmployeePrivate(models.Model):
+#     _inherit = 'hr.employee'
 
-    project_id = fields.Many2one('project.project')
+#     project_id = fields.Many2one('project.project')
