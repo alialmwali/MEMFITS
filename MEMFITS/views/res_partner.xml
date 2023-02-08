@@ -39,9 +39,7 @@
                 <xpath expr="//field[@name='website']" position="after">
                     <field name="lang_id"/>
                 </xpath>
-                <!-- <xpath expr="//group[2]" position="after">
-                    
-                </xpath> -->
+
             </field>
         </record>
         <!-- <record id="employee_form_edit" model="ir.ui.view">
