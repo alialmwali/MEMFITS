@@ -6,30 +6,150 @@
         <field name="model">crm.lead</field>
         <field name="inherit_id" ref="crm.crm_lead_view_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='website']" position="after">
-                <field name="company_name"/>
-
-                <!-- <field name="website" string="Website" widget="url" /> -->
-                <field name="website"/>
-                <field name="opportunity_name"/>
-                <field name="quoted_same_project_before"/>
-                <field name="lang_id"/>
-                <field name="new_date"/>
-                <field name="lead_expected_value"/>
-                <field name="lead_readiness"/>
-                <field name="contact_name"/>
-                <field name="email"/>
-                <field name="jop_postion"/>
-                <field name="phone"/>
-                <field name="mobile"/>
-                <field name="sales_person_id"/>
-                <field name="sales_team_id"/>
-                <!-- <field name="priority"/> -->
-                <field name="tag_ids" 
-                widget="many2many_tags"
-                />
-                <field name="priority_icon"/>
-
+            <xpath expr="//field[@name='user_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='date_deadline']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='tag_ids']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='lead_properties']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//div[hasclass('o_lead_opportunity_form_inline_fields')]" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//group[@name='opportunity_partner']" position="replace">
+                <group name="opportunity_partner_memf" attrs="{'invisible': [('type', '=', 'lead')]}">
+                    <group>
+                        <!-- <field name="probability"/>% -->
+                        <field name="partner_id"
+                            widget="res_partner_many2one"
+                            invisible="1"
+                            string="Customer"
+                            context="{'res_partner_search_mode': type == 'opportunity' and 'customer' or False,
+                                'default_name': contact_name or partner_name,
+                                'default_street': street,
+                                'default_is_company': type == 'opportunity' and contact_name == False,
+                                'default_company_name': type == 'opportunity' and partner_name,
+                                'default_street2': street2,
+                                'default_city': city,
+                                'default_title': title,
+                                'default_state_id': state_id,
+                                'default_zip': zip,
+                                'default_country_id': country_id,
+                                'default_function': function,
+                                'default_phone': phone,
+                                'default_mobile': mobile,
+                                'default_email': email_from,
+                                'default_user_id': user_id,
+                                'default_team_id': team_id,
+                                'default_website': website,
+                                'default_lang': lang_code,
+                                'show_vat': True,
+                            }"
+                        />
+                        <field name="is_blacklisted" invisible="1"/>
+                        <field name="partner_is_blacklisted" invisible="1"/>
+                        <field name="phone_blacklisted" invisible="1"/>
+                        <field name="mobile_blacklisted" invisible="1"/>
+                        <field name="email_state" invisible="1"/>
+                        <field name="phone_state" invisible="1"/>
+                        <field name="partner_email_update" invisible="1"/>
+                        <field name="partner_phone_update" invisible="1"/>
+                         <field name="company_name"/>
+                            <label for="street" string="Address"/>
+                            <div class="o_address_format">
+                                <field name="street" placeholder="Street..." class="o_address_street"/>
+                                <field name="street2" placeholder="Street 2..." class="o_address_street"/>
+                                <field name="city" placeholder="City" class="o_address_city"/>
+                                <field name="state_id" class="o_address_state" placeholder="State" options='{"no_open": True}'/>
+                                <field name="zip" placeholder="ZIP" class="o_address_zip"/>
+                                <field name="country_id" placeholder="Country" class="o_address_country" options='{"no_open": True, "no_create": True}'/>
+                            </div>
+                            <field name="website" string="Website" widget="url" />
+                            <field name="customer_category"/>
+                            <field name="market_segment"/>
+                            <field name="opportunity_type"/>
+                            <field name="lang_id"/>
+                            <field name="new_date"/>
+                            <field name="user_id" context="{'default_sales_team_id': team_id}" widget="many2one_avatar_user"/>
+                            <field name="team_id" options="{'no_open': True, 'no_create': True}"/>
+                        <field name="lost_reason_id" attrs="{'invisible': [('active', '=', True)]}"/>
+                        <field name="date_conversion" invisible="1"/>
+                        <field name="user_company_ids" invisible="1"/>
+                    </group>
+                </group>
+            </xpath>
+            <xpath expr="//page[@name='lead']/group/group[1]" position="replace">
+                
+            </xpath>
+            <xpath  expr="//div[hasclass('oe_title')]"  position="replace">
+                 <div class="oe_title">
+                    <h1><field class="text-break" name="name" placeholder="e.g. Product Pricing"/></h1>
+                    <h2 class="d-flex gap-2 g-0 align-items-end pb-3">
+                        <!-- <div attrs="{'invisible': [('type', '=', 'lead')]}">
+                            <label for="expected_revenue" class="oe_edit_only pb-1" />
+                            <div class="d-flex align-items-end">
+                                <field name="company_currency" invisible="1"/>
+                                <field name="expected_revenue" class="oe_inline o_input_8ch" widget='monetary' options="{'currency_field': 'company_currency'}"/>
+                                <span class="oe_grey p-2" groups="crm.group_use_recurring_revenues"> + </span>
+                                <span class="oe_grey p-2" groups="!crm.group_use_recurring_revenues"> at </span>
+                            </div>
+                        </div>
+                        <div attrs="{'invisible': [('type', '=', 'lead')]}" groups="crm.group_use_recurring_revenues">
+                            <field name="recurring_revenue" class="oe_inline o_input_10ch" widget="monetary" options="{'currency_field': 'company_currency'}"/>
+                        </div>
+                        <div attrs="{'invisible': [('type', '=', 'lead')]}" groups="crm.group_use_recurring_revenues">
+                            <div class="d-flex align-items-end ps-2">
+                                <field name="recurring_plan" class="oe_inline o_input_12ch" placeholder="E.g. Monthly"
+                                       attrs="{'required': [('recurring_revenue', '!=', 0)]}" options="{'no_create': True, 'no_open': True}"/>
+                                <span class="oe_grey p-2"> at </span>
+                            </div>
+                        </div> -->
+                        <div>
+                            <div class="oe_edit_only d-md-flex align-items-center">
+                                <label for="probability"/>
+                                <div class="d-flex align-items-center">
+                                    <button class="ps-0 ps-md-2 btn btn-link" name="action_set_automated_probability" type="object"
+                                            attrs="{'invisible': [('is_automated_probability', '=', True)]}">
+                                        <i class="fa fa-gear" role="img" title="Switch to automatic probability" aria-label="Switch to automatic probability"></i>
+                                    </button>
+                                    <small class="oe_grey h6 mb0 d-flex" attrs="{'invisible': [('is_automated_probability', '=', True)]}">
+                                        <field class="mb0" name="automated_probability" force_save="1"/> %
+                                    </small>
+                                </div>
+                            </div>
+                            <div id="probability" class="d-inline-block">
+                                <field name="is_automated_probability" invisible="1"/>
+                                <field name="probability" widget="float" class="oe_inline o_input_6ch"/>
+                                <span class="oe_grey"> %</span>
+                            </div>
+                        </div>
+                    </h2>
+                </div>
+            </xpath>
+            <xpath expr="//page[@name='lead']/group/group[2]" position="replace">
+                
+            </xpath>
+            
+            <xpath expr="//field[@name='type']" position="after">
+                <group>
+                    <field name="lead_expected_value" placeholder="0.0"/>
+                    <field name="lead_readiness" placeholder="Ready to Purchase" />
+                    <field name="quoted_same_project_before"/>
+                    <field name="contact_name"/>
+                    <field name="email"/>
+                    <field name="jop_postion"/>
+                    <field name="phone"/>
+                    <field name="mobile"/>
+                    <field name="priority" widget="priority"/>
+                    <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color', 'no_create_edit': True}"/>
+                    <field name="priority_icon"/>
+                  
+                </group>
             </xpath>
         </field>
     </record>

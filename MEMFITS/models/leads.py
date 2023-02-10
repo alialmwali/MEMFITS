@@ -5,18 +5,14 @@ from odoo import models, fields, api, _
 class Lead(models.Model):
     _inherit ='crm.lead'
 
-    # probability = fields.Char()
     company_name = fields.Char()
-    # street = fields.Char()
-    # street2 = fields.Char()
-    # zip = fields.Char(change_default=True)
-    # city = fields.Char()
-    # state_id = fields.Many2one("res.country.state", string='State', ondelete='restrict', domain="[('country_id', '=?', country_id)]")
-    # country_id = fields.Many2one('res.country', string='Country', ondelete='restrict')
-    # country_code = fields.Char(related='country_id.code', string="Country Code")
     
-    website = fields.Char()
-    opportunity_name = fields.Char()
+    customer_category= fields.Many2one('customer.category',required=True)
+    market_segment = fields.Many2one('market.segment',required=True)
+
+
+
+    opportunity_type = fields.Char()
     language_id = fields.Many2one('res.lang')
     new_date= fields.Char()
     lead_expected_value = fields.Char()
@@ -27,8 +23,6 @@ class Lead(models.Model):
     jop_postion = fields.Char()
     phone = fields.Char()
     mobile = fields.Char()
-    sales_person_id = fields.Many2one('res.users')
-    sales_team_id= fields.Many2one('crm.team')
     # priority = fields.Char()
     tag_ids = fields.Many2many('crm.tag', string='Tags')
     priority_icon = fields.Binary(attachment=True)

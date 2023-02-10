@@ -41,17 +41,17 @@
                 </xpath>
             </field>
         </record>
-        <!-- <record id="employee_form_edit" model="ir.ui.view">
+        <record id="employee_form_edit" model="ir.ui.view">
             <field name="name">hr.employee</field>
             <field name="model">hr.employee</field>
             <field name="inherit_id" ref="hr.view_employee_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='work_email']" position="after">
-                    <field name="project_id"/>
+                    <field name="company_id"/>
                 </xpath>
             </field>
         </record>
-         -->
+        
         
          <record id="project_project_view_form_simplified_memf" model="ir.ui.view">
             <field name="name">project.project.view.form.simplified</field>

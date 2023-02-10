@@ -3,3 +3,4 @@ customer_category_id,customer_category_name,model_customer_category,,1,1,1,1,
 
 res_region_id,res_region_name,model_res_region,,1,1,1,1
 market_segment_id,market_segment_name,model_market_segment,,1,1,1,1
+analytic_tag_id,analytic_tag_name,model_analytic_tag,,1,1,1,1

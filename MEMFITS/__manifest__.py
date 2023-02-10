@@ -16,14 +16,17 @@
     #'category': ['HR','Accounting','POS','Health','Report','Stock','Project','Web','Manufacturing','Other',],
     'category': '',
     # any module necessary for this one to work correctly
-    'depends': ['contacts', 'project', 'crm'],
+    'depends': ['contacts', 'project', 'crm','sale','repair','hr_expense','purchase'],
 
     # always loaded
     'data': [
         # 'security/security.xml',
         'security/ir.model.access.csv',
+        'data/sequence.xml',
         'views/customer_catg.xml',
         'views/res_partner.xml',
         'views/leads.xml',
+        'views/purchase.xml',
+        'views/sale_order.xml',
     ],
 }
