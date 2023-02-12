@@ -65,7 +65,9 @@
                         <field name="planning"/>
                         <field name="create_task"/>   
                     </group>
-                   
+                </xpath>
+                <xpath expr="//field[@name='name']" position="attributes">
+                    <attribute name="required">1</attribute>
                 </xpath>
             </field>
         </record>
