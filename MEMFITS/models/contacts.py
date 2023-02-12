@@ -10,6 +10,8 @@ class ResPartner(models.Model):
     customer_category= fields.Many2one('customer.category',required=True)
     market_segment = fields.Many2one('market.segment',required=True)
     region_id = fields.Many2one('res.region',required=True)
+    currency_id = fields.Many2one('res.currency',string="Supplier Currency")
+    delivery_carrier_id = fields.Many2one('delivery.carrier', string="Delivery Method")
     lang_id = fields.Many2one('res.lang')
     vat_number = fields.Char()
     cr_number= fields.Char()
@@ -20,6 +22,13 @@ class ResPartner(models.Model):
     address_arabic = fields.Char(required=True)
     city_arabic = fields.Char(required=True)
     country_arabic = fields.Char(required=True)
+    pricelist_id = fields.Many2one(
+        comodel_name='product.pricelist',
+        string="Pricelist",
+        readonly=False, precompute=True, check_company=True, required=True,  # Unrequired company
+        tracking=1,
+        domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]",
+        help="If you change the pricelist, only newly added lines will be affected.")
 class CustomerCategory(models.Model):
     _name = 'customer.category'
 
