@@ -16,7 +16,7 @@
     #'category': ['HR','Accounting','POS','Health','Report','Stock','Project','Web','Manufacturing','Other',],
     'category': '',
     # any module necessary for this one to work correctly
-    'depends': ['contacts', 'project', 'crm','sale','repair','hr_expense','purchase'],
+    'depends': ['contacts', 'project', 'crm', 'sale', 'repair', 'hr_expense', 'purchase', 'delivery'],
 
     # always loaded
     'data': [

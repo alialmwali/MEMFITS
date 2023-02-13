@@ -11,8 +11,7 @@ class ResPartner(models.Model):
     market_segment = fields.Many2one('market.segment',required=True)
     region_id = fields.Many2one('res.region',required=True)
     currency_id = fields.Many2one('res.currency',string="Supplier Currency")
-    delivery_carrier_id = fields.Many2one(
-        'delivery.carrier', string="Delivery Method")
+    carrier_id = fields.Many2one('delivery.carrier', string="Delivery Method", ondelete='cascade')
     lang_id = fields.Many2one('res.lang')
     vat_number = fields.Char()
     cr_number= fields.Char()

@@ -41,7 +41,7 @@
                 </xpath>
                 <xpath expr="//field[@name='property_payment_term_id']" position="after">
                     <field name="pricelist_id"/>
-                    <field name="delivery_carrier_id"/>
+                    <field name="carrier_id"/>
                 </xpath>
                 
             </field>
