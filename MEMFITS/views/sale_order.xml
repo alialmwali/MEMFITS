@@ -31,6 +31,40 @@
                 <field name="order_ref"/>
                 <field name="expiration_close"/>
             </xpath>
+            <xpath expr="//field[@name='note']" position="after">  
+                <field name="special_note"/>
+            </xpath>
+            <!-- <xpath expr="//field[@name='amount_untaxed']" position="after">  
+                <field name="amount_tax"/>
+            </xpath>
+            <xpath expr="//field[@name='amount_tax']" position="after">  
+                <field name="amount_total"/>
+            </xpath> -->
+            <xpath expr="//group[@name='sale_total']" position="replace"> 
+                <!-- <group class="oe_subtotal_footer oe_right" colspan="2" name="sale_total">
+                    <field name="tax_totals" widget="account-tax-totals-field" nolabel="1" colspan="2" readonly="1"/>
+                    <field name="discount_rate" widget="account-discount-rate-field" nolabel="1" colspan="2" readonly="1"/>
+                    <field name="amount_discount" widget="account-amount-discount-field" nolabel="1" colspan="2" readonly="1"/>
+                </group>  -->
+                <group class="oe_subtotal_footer oe_right" colspan="2" name="sale_total">
+                    <field name="amount_undiscounted" widget='monetary'
+                    options="{'currency_field': 'currency_id'}" readonly="1" string="Total Before Discount"/>
+                    <field name="discount_rate" readonly="1" string="Discount %"/>
+                    <field name="amount_discount" widget='monetary'
+                    options="{'currency_field': 'currency_id'}" readonly="1" string="Discount Amount"/>
+                    <field name="amount_untaxed" widget='monetary'
+                    options="{'currency_field': 'currency_id'}" readonly="1" string="Total Before VAT"/>
+                    <field name="amount_tax" widget='monetary'
+                    options="{'currency_field': 'currency_id'}" readonly="1" string="VAT"/>
+                    <field name="amount_total" widget='monetary'
+                    options="{'currency_field': 'currency_id'}" readonly="1" string="NET TOTAL PRICE"/>
+                </group>
+            </xpath>
+            <xpath expr="//field[@name='picking_policy']" position="before">  
+                <field name="warehouse_id"/>
+                <field name="incoterm_id"/>
+                <field name="lead_time"/>
+            </xpath>
         
         </field>
     </record>
