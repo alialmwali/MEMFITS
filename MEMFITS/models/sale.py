@@ -5,7 +5,7 @@ import odoo.addons.decimal_precision as dp
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
     
-    # project_id = fields.Many2one('project.project')
+    project_id = fields.Many2one(comodel_name='project.project')
     quotaion_ref = fields.Char(readonly=True)
     order_ref = fields.Char(readonly=True)
     expiration_close = fields.Date(required=True)
