@@ -5,3 +5,4 @@ from . import leads
 from . import project
 from . import sale
 from . import purchase_order
+from . import account_move

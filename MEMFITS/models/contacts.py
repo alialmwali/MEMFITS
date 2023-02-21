@@ -37,3 +37,11 @@ class Region(models.Model):
     _name = 'res.region'
 
     name= fields.Char()
+class Rescompany(models.Model):
+    _inherit = 'res.company'
+    
+    coc_client = fields.Char(string='COC Client')
+    bank_name = fields.Char()
+    swiftbic_code = fields.Char(string="SWIFT/BIC Code")
+    iban = fields.Char()
+    

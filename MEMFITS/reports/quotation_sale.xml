@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   <data>
+        <template id="report_saleorder_document" inherit_id="sale.report_saleorder_document">
+
+            <xpath expr="/t/t/div/h2" position="after">
+                <div class="row">
+                <div class="col-4">
+                    <span>New Column</span>
+                </div>
+                <div class="col-4">
+                    <span>New Column</span>
+                </div>
+                <div class="col-4">
+                    <span>New Column</span>
+                </div>
+                </div>
+            </xpath>
+            <xpath expr="/t/t/div/h2" position="attributes">
+                <attribute name="class" separator=" " add="text-right"/>
+            </xpath>
+            <xpath expr="/t/t/div/div[1]" position="after">
+                <div class="row">
+                <div class="col">
+                    <span>New Text Block</span>
+                </div>
+                </div>
+            </xpath>
+            
+            <!-- <xpath expr="/t/t/div/h2" position="attributes">
+                <attribute name="style" separator=";" add="color:#D7191F"/>
+            </xpath> -->
+            <xpath expr="/t/t/div/h2" position="attributes">
+                <attribute name="class" separator=" " add="o_bold"/>
+            </xpath>
+            <xpath expr="/t/t/div/div[2]/div/span" position="replace">
+                <span>
+                <br/>
+                </span>
+            </xpath>
+           
+            <xpath expr="/t[1]/t[1]/div[1]/h2" position="replace">
+                <h2 class="col h5 text-left" style="color:#D7191F">
+                    <span t-if="env.context.get('proforma', False) or is_pro_forma">Pro-Forma Invoice # </span>
+                    <span t-elif="doc.state in ['draft','sent']">Quotation # </span>
+                    
+                    <span t-else="">Order # </span>
+                    <!-- <span t-field="doc.name"/> -->
+                </h2>
+            </xpath>
+            <xpath expr="/t/t/div/h2" position="after">
+                <div class="row">
+                <div class="col">
+                    <span>New Text Block</span>
+                </div>
+                </div>
+            </xpath>
+            <xpath expr="/t[1]/t[1]/div[1]/div[3]" position="attributes">
+                <attribute name="class">col h6 text-right</attribute>
+            </xpath>
+            <xpath expr="/t/t/div/div[3]/div/span" position="after">
+                <span t-field="doc.name"/>
+            </xpath>
+            <xpath expr="/t[1]/t[1]/div[1]/div[3]/div[1]/span[1]" position="replace"/>
+            <xpath expr="/t/t/div/div[3]" position="attributes">
+                <attribute name="class" separator=" " remove="text-right"/>
+            </xpath>
+            <xpath expr="/t/t/div/div[3]" position="attributes">
+                <attribute name="class" separator=" " add="text-right"/>
+            </xpath>
+            <xpath expr="/t/t/div/div[3]/div" position="attributes">
+                <attribute name="class" separator=" " add="o_bold"/>
+            </xpath>
+            <xpath expr="/t/t/div/div[3]/div" position="attributes">
+                <attribute name="style" separator=";" add="color:#D7191F"/>
+            </xpath>
+            <xpath expr="/t/t/div/div[3]/div" position="attributes">
+                <attribute name="class" separator=" " add="o_italic"/>
+            </xpath>
+            <xpath expr="/t/t/div/div[4]" position="after">
+                <div class="row">
+                <div class="col-4">
+                    <span>New Column</span>
+                </div>
+                <div class="col-4">
+                    <span>New Column</span>
+                </div>
+                <div class="col-4">
+                    <span>New Column</span>
+                </div>
+                </div>
+            </xpath>
+            <xpath expr="/t/t/div/div[4]" position="after">
+                <div class="row address">
+                <div class="col-5">
+                    <div t-field="doc.partner_invoice_id" t-options-widget="'contact'"/>
+                </div>
+                <div class="col-5 offset-2"/>
+                </div>
+            </xpath>
+            <xpath expr="/t/t/div/div[5]/div[2]" position="inside">
+                <div t-field="doc.partner_shipping_id" t-options-widget="'contact'"/>
+            </xpath>
+            <xpath expr="/t/t/div/div[4]/div[1]/span" position="replace">
+                <span>SOLD TO:</span>
+            </xpath>
+            <xpath expr="/t[1]/t[1]/div[1]/div[5]/div[1]" position="attributes">
+                <attribute name="class">col-6 border-right bg-200 small</attribute>
+            </xpath>
+            <xpath expr="/t[1]/t[1]/div[1]/div[5]/div[2]" position="attributes">
+                <attribute name="class">col-6 border-right bg-200 small</attribute>
+            </xpath>
+            <xpath expr="/t[1]/t[1]/div[1]/div[4]/div[2]" position="replace"/>
+            <xpath expr="/t[1]/t[1]/div[1]/div[4]/div[1]" position="attributes">
+                <attribute name="class">col-6</attribute>
+            </xpath>
+            <xpath expr="/t/t/div/div[4]/div[2]/span" position="replace">
+                <span>SHIP TO:</span>
+            </xpath>
+            <xpath expr="/t[1]/t[1]/div[1]/div[4]/div[1]" position="attributes">
+                <attribute name="class">col-6 o_bold border-right</attribute>
+            </xpath>
+            <xpath expr="/t[1]/t[1]/div[1]/div[4]/div[2]" position="attributes">
+                <attribute name="class">col-6 o_bold border-right</attribute>
+            </xpath>
+            <xpath expr="/t[1]/t[1]/div[1]/div[4]/div[2]" position="attributes">
+                <attribute name="class">col-6 o_bold border-LEFT</attribute>
+            </xpath>
+            <xpath expr="/t[1]/t[1]/div[1]/div[4]" position="attributes">
+                <attribute name="class">row small bg-200</attribute>
+            </xpath>
+            <xpath expr="/t/t/div/div[6]" position="after">
+                <div class="row">
+                <div class="col-3">
+                    <span>SALES ORDER NUMBER</span>
+                </div>
+                <div class="col-3">
+                    <span>SALES ORDER DATE</span>
+                </div>
+                <div class="col-3">
+                    <span>OUR REFERENCE</span>
+                </div>
+                <div class="col-3">
+                    <span>CUSTOMER REFERENCE</span>
+                </div>
+                </div>
+            </xpath>
+            <xpath expr="/t/t/div/div[3]" position="after">
+                <div class="row">
+                <div class="col">
+                    <span>New Text Block</span>
+                </div>
+                </div>
+            </xpath>
+            <xpath expr="/t/t/div/div[4]/div/span" position="replace">
+                <span>
+                <br/>
+                </span>
+            </xpath>
+            <xpath expr="/t/t/div/div[8]" position="after">
+                <div class="row">
+                <div class="col-3">
+                    <span>New Column</span>
+                </div>
+                <div class="col-3">
+                    <span>New Column</span>
+                </div>
+                <div class="col-3">
+                    <span>New Column</span>
+                </div>
+                <div class="col-3">
+                    <span>New Column</span>
+                </div>
+                </div>
+            </xpath>
+            <xpath expr="/t[1]/t[1]/div[1]/div[8]" position="attributes">
+                <attribute name="class">row text-center bg-100 o_bold small</attribute>
+            </xpath>
+            <xpath expr="/t[1]/t[1]/div[1]/div[9]" position="attributes">
+                <attribute name="class">row text-center bg-100 small</attribute>
+            </xpath>
+            <xpath expr="/t/t/div/div[9]/div[1]/span" position="after">
+                <span t-field="doc.order_ref"/>
+            </xpath>
+            <xpath expr="/t/t/div/div[7]/div[1]/span" position="replace">
+                <span>
+                <br/>
+                </span>
+            </xpath>
+            <xpath expr="/t/t/div/div[7]/div[2]/span" position="replace">
+                <span>
+                <br/>
+                </span>
+            </xpath>
+            <xpath expr="/t/t/div/div[7]/div[3]/span" position="replace">
+                <span>
+                <br/>
+                </span>
+            </xpath>
+            <xpath expr="/t/t/div/div[9]" position="after">
+                <div class="row">
+                <div class="col">
+                    <span>New Text Block</span>
+                </div>
+                </div>
+            </xpath>
+            <xpath expr="/t/t/div/div[10]/div/span" position="replace">
+                <span>
+                <br/>
+                </span>
+            </xpath>
+            <xpath expr="/t/t/div/div[9]/div[2]/span" position="after">
+                <span t-field="doc.date_order"/>
+            </xpath>
+            <xpath expr="/t/t/div/div[9]/div[3]/span" position="after">
+                <span t-field="doc.quotaion_ref"/>
+            </xpath>
+            <xpath expr="/t/t/div/div[9]/div[4]/span" position="after">
+                <span t-field="doc.client_order_ref"/>
+            </xpath>
+            <xpath expr="/t[1]/t[1]/div[1]/div[9]/div[1]/span[1]" position="replace"/>
+            <xpath expr="/t[1]/t[1]/div[1]/div[9]/div[2]/span[1]" position="replace"/>
+            <xpath expr="/t[1]/t[1]/div[1]/div[9]/div[3]/span[1]" position="replace"/>
+            <xpath expr="/t[1]/t[1]/div[1]/div[9]/div[4]/span[1]" position="replace"/>
+            <xpath expr="/t/t/div/div[11]/div[1]/strong" position="replace">
+                <strong>PAYMENT TERM</strong>
+            </xpath>
+            <xpath expr="/t/t/div/div[11]/div[2]/strong" position="replace">
+                <strong>DELIVERY TERM</strong>
+            </xpath>
+            <xpath expr="/t/t/div/div[11]/div[5]/strong" position="replace">
+                <strong>CURRENCY</strong>
+            </xpath>
+            <xpath expr="/t/t/div/div[11]/div[5]/strong" position="replace">
+                <strong>SALESPERSON</strong>
+            </xpath>
+            <xpath expr="/t[1]/t[1]/div[1]/div[11]" position="attributes">
+                <attribute name="class">row text-center o_bold bg-100 small</attribute>
+            </xpath>
+            <xpath expr="/t[1]/t[1]/div[1]/div[11]/div[1]/p[1]" position="attributes">
+                <attribute name="t-field">doc.payment_term_id.display_name</attribute>
+            </xpath>
+            <xpath expr="/t[1]/t[1]/div[1]/div[11]/div[2]/p[1]" position="attributes">
+                <attribute name="t-field">doc.incoterm.display_name</attribute>
+            </xpath>
+            <xpath expr="/t[1]/t[1]/div[1]/div[11]/div[5]/p[1]" position="attributes">
+                <attribute name="t-field">doc.currency_id.name</attribute>
+            </xpath>
+            <xpath expr="/t/t/div/div[11]" position="after">
+                <div class="row">
+                <div class="col">
+                    <span>New Text Block</span>
+                </div>
+                </div>
+            </xpath>
+            <xpath expr="/t/t/div/div[12]/div/span" position="replace">
+                <span>
+                <br/>
+                </span>
+            </xpath>
+            <xpath expr="/t[1]/t[1]/div[1]/div[11]" position="replace"/>
+            <xpath expr="/t/t/div/div[10]" position="after">
+                <div class="row">
+                <div class="col-3">
+                    <span>New Column</span>
+                </div>
+                <div class="col-3">
+                    <span>New Column</span>
+                </div>
+                <div class="col-3">
+                    <span>CURRENCY</span>
+                </div>
+                <div class="col-3">
+                    <span>SALESPERSON</span>
+                </div>
+                </div>
+            </xpath>
+            <xpath expr="/t/t/div/div[11]" position="after">
+                <div class="row">
+                <div class="col-3">
+                    <span>New Column</span>
+                </div>
+                <div class="col-3">
+                    <span>New Column</span>
+                </div>
+                <div class="col-3">
+                    <span>New Column</span>
+                </div>
+                <div class="col-3">
+                    <span>New Column</span>
+                </div>
+                </div>
+            </xpath>
+            <xpath expr="/t[1]/t[1]/div[1]/div[11]" position="attributes">
+                <attribute name="class">row text-center bg-100 o_bold small</attribute>
+            </xpath>
+            <xpath expr="/t/t/div/div[11]/div[1]/span" position="replace">
+                <span>PAYMENT TERM</span>
+            </xpath>
+            <xpath expr="/t/t/div/div[11]/div[2]/span" position="replace">
+                <span>DELIVERY TERM</span>
+            </xpath>
+            <xpath expr="/t/t/div/div[12]/div[1]/span" position="after">
+                <span t-field="doc.payment_term_id.display_name"/>
+            </xpath>
+            <xpath expr="/t/t/div/div[12]/div[2]/span" position="after">
+                <span t-field="doc.incoterm.display_name"/>
+            </xpath>
+            <xpath expr="/t/t/div/div[12]/div[3]/span" position="after">
+                <span t-field="doc.currency_id.display_name"/>
+            </xpath>
+            <xpath expr="/t/t/div/div[12]/div[4]/span" position="after">
+                <span t-field="doc.user_id.name"/>
+            </xpath>
+            <xpath expr="/t[1]/t[1]/div[1]/div[12]/div[1]/span[1]" position="replace"/>
+            <xpath expr="/t[1]/t[1]/div[1]/div[12]/div[2]/span[1]" position="replace"/>
+            <xpath expr="/t[1]/t[1]/div[1]/div[12]/div[3]/span[1]" position="replace"/>
+            <xpath expr="/t[1]/t[1]/div[1]/div[12]/div[4]/span[1]" position="replace"/>
+            <xpath expr="/t[1]/t[1]/div[1]/div[12]" position="attributes">
+                <attribute name="class">row text-center bg-100 small</attribute>
+            </xpath>
+            <xpath expr="/t/t/div/div[13]" position="after">
+                <div class="row">
+                <div class="col">
+                    <span>New Text Block</span>
+                </div>
+                </div>
+            </xpath>
+            <xpath expr="/t/t/div/div[14]/div/span" position="replace">
+                <span>THIS PRO-FORMA INVOICE WAS GENERATED FOR YOUR ORDER DETAILS GIVEN BELOW</span>
+            </xpath>
+            <xpath expr="/t[1]/t[1]/div[1]/div[14]/div[1]" position="attributes">
+                <attribute name="class">col o_bold text-center small</attribute>
+            </xpath>
+            <xpath expr="/t/t/div/div[14]" position="after">
+                <div class="row">
+                <div class="col">
+                    <span>New Text Block</span>
+                </div>
+                </div>
+            </xpath>
+            <xpath expr="/t/t/div/div[15]/div/span" position="replace">
+                <span>
+                <br/>
+                </span>
+            </xpath>
+            <xpath expr="/t/t/div/div[14]/div/span" position="replace">
+                <span>THIS PRO-FORMA INVOICE WAS GENERATED FOR YOUR ORDER DETAILS GIVEN BELOW,</span>
+            </xpath>
+            <xpath expr="/t[1]/t[1]/div[1]/table[1]/thead[1]/tr[1]" position="attributes">
+                <attribute name="class">bg-100</attribute>
+            </xpath>
+            <xpath expr="/t[1]/t[1]/div[1]/table[1]" position="attributes">
+                <attribute name="class">table o_report_block_table small</attribute>
+            </xpath>
+            <xpath expr="/t[1]/t[1]/div[1]/table[1]/thead[1]/tr[1]/th[5]" position="replace"/>
+            <xpath expr="/t[1]/t[1]/div[1]/table[1]/tbody[1]/t[2]/tr[1]/t[1]/td[5]" position="replace"/>
+            <xpath expr="/t/t/div/table/thead/tr/th[5]/span[1]" position="replace">
+                <span groups="account.group_show_line_subtotals_tax_excluded" studio_groups="[{&quot;id&quot;: 24, &quot;name&quot;: &quot;Tax display B2B&quot;, &quot;display_name&quot;: &quot;Technical / Tax display B2B&quot;}]">SUB TOTAL</span>
+            </xpath>
+            <xpath expr="/t/t/div/table/thead/tr/th[1]" position="replace">
+                <th name="th_description" class="text-left">DESCRIPTION</th>
+            </xpath>
+            <xpath expr="/t/t/div/table/thead/tr/th[2]" position="replace">
+                <th name="th_quantity" class="text-right">QTY</th>
+            </xpath>
+            <xpath expr="/t/t/div/table/thead/tr/th[3]" position="replace">
+                <th name="th_priceunit" class="text-right">UNIT PRICE</th>
+            </xpath>
+            <xpath expr="/t[1]/t[1]/div[1]/table[1]/tbody[1]/t[2]/tr[1]/t[1]/td[2]/span[2]" position="replace"/>
+            <xpath expr="/t/t/div/div[16]/div" position="attributes">
+                <attribute name="class" separator=" " add="text-left"/>
+            </xpath>
+            <xpath expr="/t/t/div/div[16]" position="attributes">
+                <attribute name="class" separator=" " add="text-left"/>
+            </xpath>
+            <xpath expr="/t/t/div/div[16]/div/div" position="attributes">
+                <attribute name="class" separator=" " add="text-left"/>
+            </xpath>
+            <xpath expr="/t/t/div/div[19]" position="after">
+                <div class="row">
+                <div class="col">
+                    <span>New Text Block</span>
+                </div>
+                </div>
+            </xpath>
+            <xpath expr="/t/t/div/div[20]/div/span" position="replace">
+                <span>The Pro-Forma invoice will be invalid if the payment is not received within validity.<br/></span>
+            </xpath>
+            <xpath expr="/t/t/div/div[20]/div" position="attributes">
+                <attribute name="class" separator=" " add="o_bold"/>
+            </xpath>
+            <xpath expr="/t/t/div/div[14]" position="after">
+                <div class="row">
+                <div class="col">
+                    <span>New Text Block</span>
+                </div>
+                </div>
+            </xpath>
+            <xpath expr="/t/t/div/div[15]/div/span" position="replace">
+                <span>
+
+            If you have any questions concerning this proforma invoice contact our salesperson
+
+            <br/></span>
+            </xpath>
+            <xpath expr="/t[1]/t[1]/div[1]/div[15]/div[1]" position="attributes">
+                <attribute name="class">col text-center small</attribute>
+            </xpath>
+            <xpath expr="/t[1]/t[1]/div[1]/div[9]/div[2]/span[1]" position="attributes">
+                <attribute name="t-field">doc.date_order</attribute>
+            </xpath>
+            <xpath expr="/t[1]/t[1]/div[1]/div[9]/div[2]/span[1]" position="attributes">
+                <attribute name="t-field">doc.date_order</attribute>
+            </xpath>
+            <xpath expr="//div[@name='so_total_summary']" position="replace">
+                <div class="clearfix" name="so_total_summary">
+                    <div id="total" class="row" name="total">
+                        <div t-attf-class="#{'col-6' if report_type != 'html' else 'col-sm-7 col-md-6'} ms-auto">
+                            <table class="table">
+                                <!-- Tax totals -->
+                                <t t-set="tax_totals" t-value="doc.tax_totals"/>
+                                <t t-call="account.document_tax_totals"/>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </template>
+        
+   </data>
+</odoo>
