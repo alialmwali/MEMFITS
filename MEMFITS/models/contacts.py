@@ -6,7 +6,7 @@ from odoo import models, fields, api, _
 class ResPartner(models.Model):
     _inherit = 'res.partner'
 
-    contact_ref = fields.Char(string="Contact ID",readonly=True)
+    contact_ref = fields.Char(string="Contact ID",readonly=False)
     customer_category= fields.Many2one('customer.category',required=True)
     market_segment = fields.Many2one('market.segment',required=True)
     region_id = fields.Many2one('res.region',required=True)

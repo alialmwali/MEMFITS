@@ -2,9 +2,20 @@
 <odoo>
     <data>
         
-        <template id="arabic_english_invoice"  inherit_id="l10n_gcc_invoice.arabic_english_invoice">
-            <xpath expr="//div[@class='page']" position="replace">
-                 <page>
+        <template id="l10n_gcc_invoice.arabic_english_invoice">
+            <t t-call="web.external_layout">
+                <t t-set="o" t-value="o.with_context(lang=lang)" />
+                <t t-set="forced_vat" t-value="o.fiscal_position_id.foreign_vat"/> <!-- So that it appears in the footer of the report instead of the company VAT if it's set -->
+                <t t-set="address">
+                    <address t-field="o.partner_id" t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}' style="text-align: right"/>
+                    <div t-if="o.partner_id.vat" class="mt16" style="text-align: right">
+                        <t t-if="o.company_id.account_fiscal_country_id.vat_label" t-esc="o.company_id.account_fiscal_country_id.vat_label" id="inv_tax_id_label"/>
+                        <t t-else="">Tax ID</t>: <span t-field="o.partner_id.vat"/></div>
+                </t>
+
+                <t t-set="o_sec" t-value="o.with_context(lang='ar_001')"/>
+                <t t-set="o" t-value="o.with_context(lang='en_US')"/>
+                <page>
                     
                     <div class="row" style="margin-top:30px">
                     <div class="col-5 bg-100 " name="company_address" style="font-size: 14px;">
@@ -13,21 +24,19 @@
                                 <font>CUSTOMER INFORMATION</font>
                             </b>
                         </br>
-                        <!-- <div t-field="o.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}" class="mb-0"/>
+                        <div t-field="o.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}" class="mb-0"/>
                         <p t-if="o.partner_id.vat">
                             <t t-out="o.company_id.account_fiscal_country_id.vat_label or 'Tax ID'"/>:
                                 
                             <span t-field="o.partner_id.vat"/>
-                        </p> -->
+                        </p>
                     </div>
-                    
-                    <!-- <div t-if="o.l10n_sa_qr_code_str" class="col-2" name="qr_code">
-                        <img style="display: block; margin-left: auto; margin-right: auto;" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('QR', o.l10n_sa_qr_code_str, 130, 130)" />
-                    </div> -->
                     <div  class="col-2" style="display: flex;align-items: center; justify-content: center;">
-                        <!-- <div t-if="o.qr_code_str" style="display: flex;align-items: center; justify-content: center;">
-                            <img class="qrcode-div" style="display: block; margin-left: auto; margin-right: auto;" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('QR', o.qr_code_str, 100, 100)" />
-                        </div> -->
+                        <p>
+                            <img t-if="o.l10n_sa_qr_code_str"
+                                style="display:block;"
+                                t-att-src="'/report/barcode/?barcode_type=%s&amp;value=%s&amp;width=%s&amp;height=%s'%('QR', o.l10n_sa_qr_code_str, 150, 150)"/>
+                        </p>
                     </div>
                     <div class="col-5 bg-100 " name="address" dir="rtl" style="font-size:14px; text-align:right">
                         <br>
@@ -92,85 +101,85 @@
                     
                     <div id="informations" class="pb-3 small">
                         <div class="row text-center" t-if="o.invoice_date" name="invoice_date">
-                            <div class="col-4 text-right" style="color:#0E77A7">
+                            <div class="col-5 text-right" style="color:#0E77A7">
                                 <strong style="white-space:nowrap; color:#0e77a7">Invoice Date:
                                     </strong>
                             </div>
-                            <div class="col-4 text-center">
+                            <div class="col-2 text-center">
                                 <span t-field="o.invoice_date"/>
                             </div>
-                            <div class="col-4 text-left">
+                            <div class="col-5 text-left">
                                 <strong style="white-space:nowrap; color:#0e77a7">:
                                         تاريخ الفاتورة
                                     </strong>
                             </div>
                         </div>
-                        <div class="row" t-if="o.invoice_date_due and o.move_type == 'out_invoice' and o.state == 'posted'" name="due_date">
-                            <div class="col-4 text-right">
+                        <div class="row text-center" t-if="o.invoice_date_due and o.move_type == 'out_invoice' and o.state == 'posted'" name="due_date">
+                            <div class="col-5 text-right">
                                 <strong style="white-space:nowrap; color:#0e77a7">Due Date:
                                     </strong>
                             </div>
-                            <div class="col-4 text-center">
+                            <div class="col-2 text-center">
                                 <span t-field="o.invoice_date_due"/>
                             </div>
-                            <div class="col-4 text-left">
+                            <div class="col-5 text-left">
                                 <strong style="white-space:nowrap; color:#0e77a7">:
                                         تاريخ الاستحقاق
                                     </strong>
                             </div>
                         </div>
-                        <div class="row " t-if="o.l10n_sa_delivery_date" name="delivery_date">
-                            <div class="col-4 text-right" style="color:#0E77A7">
+                        <div class="row text-center" t-if="o.l10n_sa_delivery_date" name="delivery_date">
+                            <div class="col-5 text-right" style="color:#0E77A7">
                                 <strong style="white-space:nowrap">
                                     <font style="color: #0e74a7;">Delivery Date:</font>
                                 </strong>
                             </div>
-                            <div class="col-4 text-center">
+                            <div class="col-2 text-center">
                                 <span t-field="o.l10n_sa_delivery_date"/>
                             </div>
-                            <div class="col-4 text-left">
+                            <div class="col-5 text-left">
                                 <strong style="white-space:nowrap">
                                     <font style="color: #0e74a7;">:
                                 تاريخ الشحن</font>
                                 </strong>
                             </div>
                         </div>
-                        <div class="row" t-if="o.invoice_origin" name="origin">
-                            <div class="col-4 text-right">
+                        <div class="row text-center" name="origin">
+                            <div class="col-5 text-right">
                                 <strong style="white-space:nowrap; color:#0e77a7">Internal File No.:
                                     </strong>
                             </div>
-                            <div class="col-4 text-center">
+                            <div class="col-2 text-center">
                                 <span t-field="o.invoice_origin"/>
                             </div>
-                            <div class="col-4 text-left">
+                            <div class="col-5 text-left">
                                 <strong style="white-space:nowrap ; color:#0e77a7">: رقم الملف الداخلي</strong>
                             </div>
                         </div>
-                        <div class="row" t-if="o.partner_id.ref" name="customer_code">
-                            <div class="col-4">
+                        <div class="row text-center" t-if="o.partner_id.ref" name="customer_code">
+                            <div class="col-5">
                                 <strong style="white-space:nowrap ; color:#0e77a7">:
                                         Customer Code
                                     </strong>
                             </div>
-                            <div class="col-4">
+                            <div class="col-2">
                                 <span t-field="o.partner_id.ref"/>
                             </div>
-                            <div class="col-4 text-right">
+                            <div class="col-5 text-right">
                                 <strong style="white-space:nowrap; color:#0e77a7">:
                                         كود العميل
                                     </strong>
                             </div>
                         </div>
-                        <div class="row" t-if="o.ref" name="reference">
-                            <div class="col-4 text-right">
+                        <div class="row text-center" name="reference">
+                            <div class="col-5 text-right">
                                 <strong style="white-space:nowrap ; color:#0e77a7">Customer PO.:
                                     </strong>
                             </div>
-                            <div class="col-4 text-center">
+                            <div class="col-2 text-center">
                                 <span t-field="o.ref"/>
                             </div>
-                            <div class="col-4 text-left">
+                            <div class="col-5 text-left">
                                 <strong style="white-space:nowrap ; color:#0e77a7">:
                                         رقم أمر الشراء
                                     </strong>
@@ -344,7 +353,7 @@
                             <div class="col-6">
                                 <table class="table table-sm" style="page-break-inside: avoid;">
                                     <tr class="border-black o_subtotal">
-                                        <td>
+                                        <td style="color:#0e74a7">
                                             <strong>
                                                     SUBTOTAL
                                                     /
@@ -361,7 +370,7 @@
                                         <t t-call="account.tax_groups_totals"/></t>
                                     <tr class="border-black o_total bg-100" style="background-color:#3984C6">
                                         <td style="background-color:#f1f5f9">
-                                            <strong>
+                                            <strong style="color:#0e74a7">
                                                     TOTAL
                                                     /
                                                     المجموع
@@ -429,6 +438,7 @@
                             </div>
                         </div>
                     </p>
+                    <div style="page-break-inside:avoid"/>
                     <p t-if="o.invoice_payment_term_id" name="payment_term">
                         <div class="row small">
                             <div class="col-2 text-left">
@@ -442,7 +452,7 @@
                             </div>
                         </div>
                     </p>
-                    <p t-if="o.narration" name="comment">
+                    <p name="comment">
                         <div class="row small">
                             <div class="col-2 text-left">
                                 <strong style="white-space:nowrap">
@@ -463,7 +473,6 @@
                                 </span>
                             </div>
                         </div>
-                        <div style="page-break-inside:avoid">
                         <div class="row small text-center o_bold bg-100" >
                             <div class="col">
                                 <span>DECLARATION</span>
@@ -566,7 +575,9 @@
                                 <span>Should you have any enquiries concerning this invoice, please contact us. This is system generated invoice and does not require physical signature from our side</span>
                             </div>
                         </div>
-                        </div>
+                        <div style="page-break-inside:avoid"/>
+
+                        <!-- </div> -->
                     </p>
                     <p t-if="o.fiscal_position_id.note" name="note">
                         <div class="row">
@@ -582,6 +593,18 @@
                         </div>
                     </p>
                 </page>
+            </t>
+        </template>
+
+        <template id="arabic_english_invoice" inherit_id="l10n_sa.arabic_english_invoice">
+            <!-- <xpath expr="//div[@name='due_date']" position="after">
+              
+            </xpath>
+            <xpath expr="//t[@t-set='address']" position="after">
+               
+            </xpath> -->
+            <xpath expr="//div[@name='delivery_date']" position="replace">
+               
             </xpath>
         </template>
     </data>
