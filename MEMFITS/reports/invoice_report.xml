@@ -353,8 +353,8 @@
                             <div class="col-6">
                                 <table class="table table-sm" style="page-break-inside: avoid;">
                                     <tr class="border-black o_subtotal">
-                                        <td style="color:#0e74a7">
-                                            <strong>
+                                        <td>
+                                            <strong style="color:#0e74a7">
                                                     SUBTOTAL
                                                     /
                                                     الإجمالي الفرعي
