@@ -16,8 +16,18 @@
                 </div>
                 </div>
             </xpath>
-            <xpath expr="/t/t/div/h2" position="attributes">
+            <!-- <xpath expr="/t/t/div/h2" position="attributes">
                 <attribute name="class" separator=" " add="text-right"/>
+            </xpath> -->
+            <xpath expr="/t/t/div/h2" position="replace">
+
+                <h2 class="h5 text-right o_bold" style="color:#D7191F">
+                    <span class="text-right" t-if="env.context.get('proforma', False) or is_pro_forma">Pro-Forma Invoice # </span>
+                    <span class="text-right" t-elif="doc.state in ['draft','sent']">Quotation # </span>
+                    <span class="text-right" t-else="">Order # </span>
+                    <br></br>
+                    <span class="text-right" t-field="doc.name"/>
+                </h2>
             </xpath>
             <xpath expr="/t/t/div/div[1]" position="after">
                 <div class="row">
@@ -30,24 +40,21 @@
             <!-- <xpath expr="/t/t/div/h2" position="attributes">
                 <attribute name="style" separator=";" add="color:#D7191F"/>
             </xpath> -->
-            <xpath expr="/t/t/div/h2" position="attributes">
-                <attribute name="class" separator=" " add="o_bold"/>
-            </xpath>
+            
             <xpath expr="/t/t/div/div[2]/div/span" position="replace">
                 <span>
                 <br/>
                 </span>
             </xpath>
            
-            <xpath expr="/t[1]/t[1]/div[1]/h2" position="replace">
+            <!-- <xpath expr="/t[1]/t[1]/div[1]/h2" position="replace">
                 <h2 class="col h5 text-left" style="color:#D7191F">
                     <span t-if="env.context.get('proforma', False) or is_pro_forma">Pro-Forma Invoice # </span>
                     <span t-elif="doc.state in ['draft','sent']">Quotation # </span>
                     
                     <span t-else="">Order # </span>
-                    <!-- <span t-field="doc.name"/> -->
                 </h2>
-            </xpath>
+            </xpath> -->
             <xpath expr="/t/t/div/h2" position="after">
                 <div class="row">
                 <div class="col">
@@ -58,9 +65,9 @@
             <xpath expr="/t[1]/t[1]/div[1]/div[3]" position="attributes">
                 <attribute name="class">col h6 text-right</attribute>
             </xpath>
-            <xpath expr="/t/t/div/div[3]/div/span" position="after">
+            <!-- <xpath expr="/t/t/div/div[3]/div/span" position="after">
                 <span t-field="doc.name"/>
-            </xpath>
+            </xpath> -->
             <xpath expr="/t[1]/t[1]/div[1]/div[3]/div[1]/span[1]" position="replace"/>
             <xpath expr="/t/t/div/div[3]" position="attributes">
                 <attribute name="class" separator=" " remove="text-right"/>
@@ -182,6 +189,9 @@
             <xpath expr="/t/t/div/div[9]/div[1]/span" position="after">
                 <span t-field="doc.order_ref"/>
             </xpath>
+            <xpath expr="/t/t/div/div[9]/div[3]/span" position="after">
+                <span t-field="doc.quotaion_ref"/>
+            </xpath>
             <xpath expr="/t/t/div/div[7]/div[1]/span" position="replace">
                 <span>
                 <br/>
@@ -212,9 +222,7 @@
             <xpath expr="/t/t/div/div[9]/div[2]/span" position="after">
                 <span t-field="doc.date_order"/>
             </xpath>
-            <xpath expr="/t/t/div/div[9]/div[3]/span" position="after">
-                <span t-field="doc.quotaion_ref"/>
-            </xpath>
+            
             <xpath expr="/t/t/div/div[9]/div[4]/span" position="after">
                 <span t-field="doc.client_order_ref"/>
             </xpath>
@@ -347,6 +355,24 @@
             <xpath expr="/t/t/div/div[14]/div/span" position="replace">
                 <span>THIS PRO-FORMA INVOICE WAS GENERATED FOR YOUR ORDER DETAILS GIVEN BELOW,</span>
             </xpath>
+            <xpath expr="/t/t/div/table/thead" position="replace">
+                <thead style="display: table-row-group">
+                    <tr class="text-center">
+                        <th name="th_description" class="text-start">Description</th>
+                        
+                        <th name="th_quantity" class="text-end">QTY</th>
+                        <th name="th_priceunit" class="text-end">Unit Price</th>
+                        <th name="th_discount" t-if="display_discount" class="text-end" groups="product.group_discount_per_so_line">
+                            <span>Disc.%</span>
+                        </th>
+                        <th name="th_taxes" class="text-end">Taxes</th>
+                        <th name="th_subtotal" class="text-end">
+                            <span groups="account.group_show_line_subtotals_tax_excluded" studio_groups="[{&quot;id&quot;: 24, &quot;name&quot;: &quot;Tax display B2B&quot;, &quot;display_name&quot;: &quot;Technical / Tax display B2B&quot;}]">SUB TOTAL</span>
+                            <span groups="account.group_show_line_subtotals_tax_included">Total Price</span>
+                        </th>
+                    </tr>
+                </thead>
+            </xpath>
             <xpath expr="/t[1]/t[1]/div[1]/table[1]/thead[1]/tr[1]" position="attributes">
                 <attribute name="class">bg-100</attribute>
             </xpath>
@@ -355,18 +381,6 @@
             </xpath>
             <xpath expr="/t[1]/t[1]/div[1]/table[1]/thead[1]/tr[1]/th[5]" position="replace"/>
             <xpath expr="/t[1]/t[1]/div[1]/table[1]/tbody[1]/t[2]/tr[1]/t[1]/td[5]" position="replace"/>
-            <xpath expr="/t/t/div/table/thead/tr/th[5]/span[1]" position="replace">
-                <span groups="account.group_show_line_subtotals_tax_excluded" studio_groups="[{&quot;id&quot;: 24, &quot;name&quot;: &quot;Tax display B2B&quot;, &quot;display_name&quot;: &quot;Technical / Tax display B2B&quot;}]">SUB TOTAL</span>
-            </xpath>
-            <xpath expr="/t/t/div/table/thead/tr/th[1]" position="replace">
-                <th name="th_description" class="text-left">DESCRIPTION</th>
-            </xpath>
-            <xpath expr="/t/t/div/table/thead/tr/th[2]" position="replace">
-                <th name="th_quantity" class="text-right">QTY</th>
-            </xpath>
-            <xpath expr="/t/t/div/table/thead/tr/th[3]" position="replace">
-                <th name="th_priceunit" class="text-right">UNIT PRICE</th>
-            </xpath>
             <xpath expr="/t[1]/t[1]/div[1]/table[1]/tbody[1]/t[2]/tr[1]/t[1]/td[2]/span[2]" position="replace"/>
             <xpath expr="/t/t/div/div[16]/div" position="attributes">
                 <attribute name="class" separator=" " add="text-left"/>
