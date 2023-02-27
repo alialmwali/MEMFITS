@@ -24,7 +24,7 @@
                 <!-- <group>
                 </group> -->
                 <group>
-                    <field name="quotaion_ref"/>
+                    <field name="quotaion_ref" string="Quotaion Number"/>
                     <field name="project_id" required="1"/>
                     <field name="partner_id" required="1"/>
                     <field name="partner_invoice_id" required="1"/>
@@ -33,7 +33,7 @@
                 </group>
             </xpath>
             <xpath expr="//field[@name='validity_date']" position="before">  
-                <field name="order_ref"/>
+                <field name="order_ref" string="Order Number"/>
                 <field name="expiration_close"/>
             </xpath>
             <xpath expr="//field[@name='note']" position="after">  
