@@ -422,13 +422,13 @@
                     </div>
                     <p t-if="o.move_type in ('out_invoice', 'in_refund') and o.payment_reference" name="payment_communication">
                         <div class="row small">
-                            <div class="col-2 text-left">
+                            <div class="col-3 text-left">
                                 <strong style="white-space:nowrap">
                                     PAYMENT REFERENCE:
                                     <br/>رقم المرجع
                                 </strong>
                             </div>
-                            <div class="col-4 text-left">
+                            <div class="col-3 text-left">
                                 <span t-field="o.payment_reference"/>
                             </div>
                             <div class="col-4 text-left">
@@ -441,13 +441,13 @@
                     <div style="page-break-inside:avoid"/>
                     <p t-if="o.invoice_payment_term_id" name="payment_term">
                         <div class="row small">
-                            <div class="col-2 text-left">
+                            <div class="col-3 text-left">
                                 <strong style="white-space:nowrap">
                                     PAYMENT TERMS:
                                     <br/>طريقة الدفع 
                                 </strong>
                             </div>
-                            <div class="col-4 text-left">
+                            <div class="col-3 text-left">
                                 <span t-field="o.invoice_payment_term_id.display_name"/>
                             </div>
                         </div>
