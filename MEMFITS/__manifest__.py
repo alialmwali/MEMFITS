@@ -28,9 +28,9 @@
         'views/leads.xml',
         'views/purchase.xml',
         'views/sale_order.xml',
-        'reports/layouts.xml',
         'reports/invoice_report.xml',
         'reports/quotation_sale.xml',
         'reports/stock_delivery.xml',
+        'reports/layouts.xml',
     ],
 }
