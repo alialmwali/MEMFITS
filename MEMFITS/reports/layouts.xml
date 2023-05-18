@@ -1,5 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+<!-- 
+    <template id="web.external_layout_boxed">
+        <div t-attf-class="header o_company_#{company.id}_layout">
+            <div class="container">
+                <div class="row">
+                    <div class="col-4 text-left" style="margin-top:7px;">
+                        <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height:60px;" alt="Logo"/>
+                    </div>
+                    <div class="col-4 text-center">
+
+                    </div>
+                    <div class="col-4 text-right" style="margin-top:12px;">
+                        <img t-if="company.favicon" t-att-src="image_data_uri(company.favicon)" style="max-height:40px;" alt="Icon"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div t-attf-class="article o_report_layout_clean o_company_#{company.id}_layout" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
+            <t t-raw="0"/>
+        </div>
+        <div t-attf-class="footer o_clean_footer o_company_#{company.id}_layout">
+            <div class="row">
+                <div class="col" style="margin-bottom:10px;">
+                <div class="container">
+                    <div class="row"> 
+                        <div class="col-6" style="font-size: 10px; text-align:left"> 
+                            <strong><span t-field="company.name"/></strong>
+                        </div>
+                
+                        <div class="col-6" style="font-size: 10px; text-align:right">
+                            <b> Page <span class="page"/> of <span class="topage"/></b>
+                        </div>
+            
+                    </div>
+                </div>
+        
+                <div class="container">
+                    <div class="row">
+                        <div class="col-3" style="font-size: 10px;">
+                            <b>C.C No.: </b><span t-field="company.coc_client"/>
+                            <br>
+                            <b>CR. No.: </b><span t-field="company.company_registry"/></br>
+                            <br>
+                            <b>Tax/VAT No.:</b> <span t-field="company.vat"/></br>
+                        </div>
+                        
+                        column 2
+                        <div class="col-2" style="font-size: 10px;">
+                            <b><span t-field="company.country_id"/></b>
+                            <br>
+                            <b>P.O Box: </b><span t-field="company.street2"/></br>
+                            <br>
+                            <b>City: </b> <span t-field="company.city"/></br>
+                        </div>
+                        
+                        
+                        column 3
+                        <div class="col-4" style="font-size: 10px;">
+                            <b>Bank name: </b><span t-field="company.bank_name"/>
+                            <br>
+                            <b>SWIFT/BIC Code: </b><span t-field="company.swiftbic_code"/></br>
+                            <br>
+                            <b>IBAN:</b> <span t-field="company.iban"/></br>
+                        </div>
+                        
+                        
+                        column 4
+                        <div class="col-3" style="font-size: 10px;">
+                            <b>Email: </b><span t-field="company.email"/>
+                            <br>
+                            <b>Phone: </b><span t-field="company.phone"/></br>
+                            <br>
+                            <b>Web:</b> <span t-field="company.website"/></br>
+                        </div>
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template> -->
     <template id="memfits_custom_layout">
         <div dir="ltr" class="header font">
             <div dir="ltr" class="o_boxed_header">
@@ -40,40 +121,40 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-3" style="font-size: 10px;">
-                            <b>C.C No.: </b><span  t-if="company.coc_client" t-field="company.coc_client"/>
+                            <b>C.C No.: </b><span t-if="company.coc_client" t-field="company.coc_client"/>
                             <br>
-                            <b>CR. No.: </b><span t-field="company.company_registry"/></br>
+                            <b>CR. No.: </b><span t-if="company.company_registry" t-field="company.company_registry"/></br>
                             <br>
-                            <b>Tax/VAT No.:</b> <span t-field="company.vat"/></br>
+                            <b>Tax/VAT No.:</b> <span t-if="company.vat" t-field="company.vat"/></br>
                         </div>
                         
                         <!-- column 2 -->
                         <div class="col-2" style="font-size: 10px;">
                             <b><span t-field="company.country_id"/></b>
                             <br>
-                            <b>P.O Box: </b><span t-field="company.street2"/></br>
+                            <b>P.O Box: </b><span t-if="company.street2" t-field="company.street2"/></br>
                             <br>
-                            <b>City: </b> <span t-field="company.city"/></br>
+                            <b>City: </b> <span t-if="company.city" t-field="company.city"/></br>
                         </div>
                         
                         
                         <!-- column 3 -->
                         <div class="col-4" style="font-size: 10px;">
-                            <b>Bank name: </b><span t-field="company.bank_name"/>
+                            <b>Bank name: </b><span t-if="company.bank_name" t-field="company.bank_name"/>
                             <br>
-                            <b>SWIFT/BIC Code: </b><span t-field="company.swiftbic_code"/></br>
+                            <b>SWIFT/BIC Code: </b><span t-if="company.swiftbic_code" t-field="company.swiftbic_code"/></br>
                             <br>
-                            <b>IBAN:</b> <span t-field="company.iban"/></br>
+                            <b>IBAN:</b> <span t-if="company.iban" t-field="company.iban"/></br>
                         </div>
                         
                         
                         <!-- column 4 -->
                         <div class="col-3" style="font-size: 10px;">
-                            <b>Email: </b><span t-field="company.email"/>
+                            <b>Email: </b><span t-if="company.email" t-field="company.email"/>
                             <br>
-                            <b>Phone: </b><span t-field="company.phone"/></br>
+                            <b>Phone: </b><span t-if="company.phone" t-field="company.phone"/></br>
                             <br>
-                            <b>Web:</b> <span t-field="company.website"/></br>
+                            <b>Web:</b> <span t-if="company.website" t-field="company.website"/></br>
                         </div>
                         
                         </div>
