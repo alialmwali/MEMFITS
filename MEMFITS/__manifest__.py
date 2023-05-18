@@ -31,6 +31,6 @@
         'reports/invoice_report.xml',
         'reports/quotation_sale.xml',
         'reports/stock_delivery.xml',
-        'reports/layouts.xml',
+        # 'reports/layouts.xml',
     ],
 }
