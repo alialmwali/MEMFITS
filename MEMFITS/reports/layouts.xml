@@ -40,7 +40,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-3" style="font-size: 10px;">
-                            <b>C.C No.: </b><span  t-if="company.coc_client" t-field="company.coc_client"/>
+                            <!-- <b>C.C No.: </b><span  t-if="company.coc_client" t-field="company.coc_client"/> -->
                             <br>
                             <b>CR. No.: </b><span t-if="company.company_registry" t-field="company.company_registry"/></br>
                             <br>
